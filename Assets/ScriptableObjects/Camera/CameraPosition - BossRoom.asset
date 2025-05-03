@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436011c106cc948c3928898e6567a445, type: 3}
   m_Name: CameraPosition - BossRoom
   m_EditorClassIdentifier: 
-  defaultValue: {x: 8, y: 3, z: -10}
+  defaultValue: {x: 8, y: 2, z: -10}

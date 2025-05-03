@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: d4bbf8b53af8b41f49268b57de4dbf64
   - enabled: 1
-    path: Assets/Scenes/PrototypeScene.unity
-    guid: da98022567eaa4ed59d04202bbfc624e
+    path: Assets/Scenes/Level1.unity
+    guid: aee04999234234cd294014f3fa5e527e
   - enabled: 1
     path: Assets/Scenes/BossRoom.unity
     guid: 6f0ae229e257e4eb4962fd8a941b3913

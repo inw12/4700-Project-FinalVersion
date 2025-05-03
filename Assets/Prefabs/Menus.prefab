@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 1840593602895066677}
   - component: {fileID: 6946646985246704249}
   - component: {fileID: 1058437994911532866}
-  - component: {fileID: 4923301356887633478}
+  - component: {fileID: 1094511503113281832}
   m_Layer: 5
   m_Name: Menus
   m_TagString: Untagged
@@ -111,8 +111,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5222539608134543629}
   - {fileID: 1969136387596007249}
+  - {fileID: 5222539608134543629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -198,9 +198,11 @@ MonoBehaviour:
   pauseMenu: {fileID: 1997102704810519777}
   gameOverMenu: {fileID: 6871914952732851715}
   playerHUD: {fileID: 0}
-  fadeToBlack: {fileID: 1810363425709124805, guid: 605bd589d761e478cbb94e9e90808c53, type: 3}
-  fadeFromBlack: {fileID: 1919185383355618303, guid: c3b40709ba68a41438966e450c036dd5, type: 3}
---- !u!114 &4923301356887633478
+  reduceVolumeSignal: {fileID: 11400000, guid: f480f1d6bf8134813bc5ece532b5476c, type: 2}
+  defaultVolumeSignal: {fileID: 11400000, guid: cbd1b1663de3e4369830d976c10c0227, type: 2}
+  itemsToReset:
+  - {fileID: 11400000, guid: 0cbe9e2f848ba49b9aab81c7cfb0ee24, type: 2}
+--- !u!114 &1094511503113281832
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -474,7 +476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00097656, y: 239.99994}
+  m_AnchoredPosition: {x: 0, y: 240}
   m_SizeDelta: {x: 1280, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &728976977937729761
@@ -1422,7 +1424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000030518}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1280, y: 960}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5240131828353546512
@@ -1722,7 +1724,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1058437994911532866}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: TryAgain
+        m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

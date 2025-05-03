@@ -7,7 +7,7 @@ public class CoinCount : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemAmountText;
 
     private void Update() {
-        int amount = coin.runtimeAmount;
+        int amount = coin.runtimeAmountHeld;
 
         if (amount < 10) {
             itemAmountText.text = "0" + amount;

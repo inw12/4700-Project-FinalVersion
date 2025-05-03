@@ -35,7 +35,10 @@ public class Player : MonoBehaviour
 
 
     private void Awake() {
-        Instance = this;
+        if (!Instance) {
+            Instance = this;
+        } else Destroy(gameObject);
+
         HP.ResetRuntimeValue();
         playerControls = new PlayerControls();
         mainCamera = Camera.main;
@@ -53,8 +56,8 @@ public class Player : MonoBehaviour
     }
 
     private void OnDisable() {
-        playerControls.Movement.Dash.performed -= inputCallback; 
         playerControls.Disable();
+        playerControls.Movement.Dash.performed -= inputCallback; 
     }
 
     private void Start() {
@@ -127,7 +130,6 @@ public class Player : MonoBehaviour
     private void CheckForDeath() {
         if (HP.runtimeValue <= 0) {
             if (deathSignal) deathSignal.Raise();
-            Time.timeScale = 0f;
             gameObject.SetActive(false);
         }
     }

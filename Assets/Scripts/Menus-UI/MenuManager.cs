@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,16 +6,14 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOverMenu;
-
     [SerializeField] private GameObject playerHUD;
+    [SerializeField] private Signal reduceVolumeSignal;
+    [SerializeField] private Signal defaultVolumeSignal;
+    [SerializeField] private List<InventoryItem> itemsToReset;
 
-    [SerializeField] private GameObject fadeToBlack;
-    [SerializeField] private GameObject fadeFromBlack;
-
-    [SerializeField] private PlayerControls playerControls;
-
+    private PlayerControls playerControls;
     private bool isPaused;
-    //private readonly string gameScene = "PrototypeScene";
+    private readonly string beginningScene = "Level1";
     private readonly string menuScene = "MainMenu";
 
     private void Awake() {
@@ -24,12 +23,22 @@ public class MenuManager : MonoBehaviour
     private void OnEnable() {
         playerControls.Enable();
     }
+
+    private void OnDisable() {
+        playerControls.Disable();
+    }
+
     private void Start() {
         isPaused = false;
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         playerControls.Menus.Pause.started += _ => PauseMenu();        
     }
+
+    private void Update() {
+        if (isPaused) reduceVolumeSignal.Raise();
+        else defaultVolumeSignal.Raise();
+    } 
 
     private void PauseMenu() {
         isPaused = !isPaused;
@@ -46,7 +55,7 @@ public class MenuManager : MonoBehaviour
             playerHUD.SetActive(true);
             pauseMenu.SetActive(false);
 
-            Player.Instance.gameObject.SetActive(false);
+            Player.Instance.gameObject.SetActive(true);
         }
     }
 
@@ -55,11 +64,13 @@ public class MenuManager : MonoBehaviour
 
         if (isPaused) {
             Time.timeScale = 0f;
+            playerHUD.SetActive(false);
             gameOverMenu.SetActive(true);
         }
     }
 
     public void Resume() {
+        isPaused = !isPaused;
         Time.timeScale = 1f;
 
         playerHUD.SetActive(true);
@@ -69,10 +80,12 @@ public class MenuManager : MonoBehaviour
         playerControls.Enable();
     }
 
-    public void TryAgain() {
-        Debug.Log("Resetting Time.timeScale to 1 and reloading the scene.");
+    public void Retry() {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        foreach (InventoryItem item in itemsToReset) {
+            item.ResetRuntimeAmount();
+        }
+        SceneManager.LoadScene(beginningScene);
     }
 
     public void QuitToMain() {

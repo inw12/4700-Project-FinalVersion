@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7572002771250038886}
   - component: {fileID: 1705888198827623606}
   - component: {fileID: 2404039057746770113}
+  - component: {fileID: 3686789507146131161}
   - component: {fileID: 1281825556305533228}
   m_Layer: 0
   m_Name: LargeChest
@@ -218,10 +219,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca45b3459948c4d23949632168e101fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  chestType: {fileID: 3686789507146131161}
+--- !u!114 &3686789507146131161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655391350494813593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f41b50eecd7f41d1b1fbfd83a895f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 0cbe9e2f848ba49b9aab81c7cfb0ee24, type: 2}
   playerInventory: {fileID: 11400000, guid: b8279570264c94e8f81d5c68c0ddd8f6, type: 2}
-  audioSource: {fileID: 1281825556305533228}
-  itemPickupEffect: {fileID: 0}
+  openChestAudio: {fileID: 1281825556305533228}
+  itemPickupEffect: {fileID: 2124351246792896985, guid: e1da8a7bd697041a4bd3495dba8d0b00, type: 3}
   destroyEffect: {fileID: 8892812010945328593, guid: 42d3ee158856a4b0db37d79ef948188a, type: 3}
 --- !u!82 &1281825556305533228
 AudioSource:
@@ -242,7 +256,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 174
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

@@ -1,18 +1,17 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public static Enemy Instance { get; private set; }
 
-    [SerializeField] private float HP = 5;
+    public float HP = 5;
     [SerializeField] private float moveSpeed = 1.5f;
     [SerializeField] private GameObject deathFX;
     [SerializeField] private AudioSource deathSFX;
 
     [SerializeField] private List<GameObject> itemPool;     // list of items that may potentially drop on death
-    private readonly float dropChance = 0.25f;   // 25% item drop chance
+    private readonly float dropChance = 0.33f;   // 25% item drop chance
 
     private Rigidbody2D rigidBody;
     private Collider2D hurtbox;
@@ -64,7 +63,7 @@ public class Enemy : MonoBehaviour
         movementDirection = Vector3.zero;
     }
 
-    private void CheckForDeath() {
+    public virtual void CheckForDeath() {
         if (HP <= 0) {
             isAlive = false;
             hurtbox.enabled = false;
@@ -107,6 +106,8 @@ public class Enemy : MonoBehaviour
     {
         HP -= receivedDamage;
         CheckForDeath();
+
+        Debug.Log(HP);
 
         // Apply damage effects if not dead
         if (HP > 0) {

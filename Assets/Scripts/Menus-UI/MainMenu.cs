@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private readonly string startingScene = "PrototypeScene";
+    private readonly string startingScene = "Level1";
 
     public void StartGame() {
         SceneManager.LoadScene(startingScene);

@@ -4,10 +4,12 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private Signal roomClearSignal;
 
-    void Update()
-    {
-        if (transform.childCount == 0) {
+    private bool signalRaise = false;
+
+    void Update() {
+        if (transform.childCount == 0 && !signalRaise) {
             roomClearSignal.Raise();
+            signalRaise = true;
         }
     }
 }

@@ -6,11 +6,13 @@ public class HeartPickup : MonoBehaviour, ICollectableItem
     [SerializeField] private FloatValue playerHealth;
     [SerializeField] private AudioSource audioSource;
 
-    private readonly float restoreAmount = 2f;
+    private readonly float restoreAmount = 1f;
     private SpriteRenderer spriteRenderer;
+    private BoxCollider2D circleCollider;
     
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        circleCollider = GetComponent<BoxCollider2D>();
     }
 
     public void Collect() {
@@ -26,6 +28,7 @@ public class HeartPickup : MonoBehaviour, ICollectableItem
     private IEnumerator CollectRoutine() {
         audioSource.Play();
         SetInvisible();
+        circleCollider.enabled = false;
 
         // *--*  Item Effect  *--*
         playerHealth.runtimeValue += restoreAmount; 

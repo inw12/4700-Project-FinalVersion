@@ -45,13 +45,13 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 2db7a6eb51ca6480fbb87f796a888c0d, type: 3}
   m_Resource: {fileID: 8300000, guid: 2db7a6eb51ca6480fbb87f796a888c0d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 0.75
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 150
+  Priority: 192
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -174,13 +174,13 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 26b71c51e8f3641009c4d177c32e6d0a, type: 3}
   m_Resource: {fileID: 8300000, guid: 26b71c51e8f3641009c4d177c32e6d0a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 0.9
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 150
+  Priority: 192
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

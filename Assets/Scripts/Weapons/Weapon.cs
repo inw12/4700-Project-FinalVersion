@@ -4,7 +4,7 @@ public class Weapon : Singleton<Weapon>
 {
     [SerializeField] private MonoBehaviour rangedWeapon;
     [SerializeField] private float fireRate = 0.3f;
-    [SerializeField] private MonoBehaviour meleeWeapon;
+    //[SerializeField] private MonoBehaviour meleeWeapon;
 
     private PlayerControls playerControls;
     private bool attackButtonDown = false;
@@ -21,6 +21,10 @@ public class Weapon : Singleton<Weapon>
 
     private void OnEnable() {
         playerControls.Enable();
+    }
+
+    private void OnDisable() {
+        playerControls.Disable();
     }
 
     private void Start()

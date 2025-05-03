@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5272463401831530333}
   - component: {fileID: 6068763513737081876}
   - component: {fileID: 284998785536004950}
+  - component: {fileID: 3485821139653106474}
   - component: {fileID: 4413686171073496408}
   m_Layer: 0
   m_Name: SmallChest
@@ -218,9 +219,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca45b3459948c4d23949632168e101fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestType: {fileID: 3485821139653106474}
+--- !u!114 &3485821139653106474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4090125186527717220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7595e6afb7d3c47d9b7a97c8983a4d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 0cbe9e2f848ba49b9aab81c7cfb0ee24, type: 2}
   playerInventory: {fileID: 11400000, guid: b8279570264c94e8f81d5c68c0ddd8f6, type: 2}
-  audioSource: {fileID: 4413686171073496408}
+  openChestAudio: {fileID: 4413686171073496408}
   itemPickupEffect: {fileID: 2124351246792896985, guid: e1da8a7bd697041a4bd3495dba8d0b00, type: 3}
   destroyEffect: {fileID: 8892812010945328593, guid: 42d3ee158856a4b0db37d79ef948188a, type: 3}
 --- !u!82 &4413686171073496408
@@ -236,13 +250,13 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: d98ae34e6475345eaa77307e95b11107, type: 3}
   m_Resource: {fileID: 8300000, guid: d98ae34e6475345eaa77307e95b11107, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
-  m_Pitch: 1.1
+  m_Volume: 0.5
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 174
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

@@ -1,12 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
     [SerializeField] private float roamChangeDirFloat = 0.75f;
     [SerializeField] private float personalBubble = 6f;     // enemy CHASES player if OUTISDE bubble; randomly ROAMS around if INSIDE the bubble
-    [SerializeField] private float attackCooldown = 2f;
 
     [SerializeField] private Transform target;
 
@@ -16,6 +14,10 @@ public class BossAI : MonoBehaviour
     private Vector2 roamPosition;
     private float timeRoaming;
     private bool canAttack;
+
+    private float atkCDMin = 1.5f;
+    private float atkCDMax = 2.5f;
+
 
     private enum State {
         Roaming,
@@ -36,7 +38,7 @@ public class BossAI : MonoBehaviour
     }
 
     private void Update() {
-        if (boss.isAlive) {
+        if (boss.isAlive && boss.canMove) {
             Vector2 directionToPlayer = (target.position - transform.position).normalized;
             anim.SetFloat("moveX", directionToPlayer.x);
             anim.SetFloat("moveY", directionToPlayer.y);
@@ -108,17 +110,17 @@ public class BossAI : MonoBehaviour
         string animStartupState;
         float rand = Random.value;
 
-        // 45% chance for Basic Shot
-        if (rand <= 0.45f) {
+        // 50% chance for Basic Shot
+        if (rand <= 0.5f) {
             attackTrigger = "startShoot";                       
             animStartupState = "Shoot-Startup";
         } 
-        // 35% chance for Shotgun Burst
-        else if (0.45f < rand && rand <= 0.8f) {
+        // 20% chance for Shotgun Burst
+        else if (0.5f < rand && rand <= 0.7f) {
             attackTrigger = "startPunch";                   
             animStartupState = "Punch-Startup";
         } 
-        // 20% chance for AoE Blast
+        // 30% chance for AoE Blast
         else {
             attackTrigger = "startDoublePunch";                               
             animStartupState = "DoublePunch";
@@ -139,7 +141,7 @@ public class BossAI : MonoBehaviour
         boss.MoveTo(roamPosition);
 
         // Apply attack cooldown
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(Random.Range(atkCDMin, atkCDMax));
         canAttack = true;
     }
 

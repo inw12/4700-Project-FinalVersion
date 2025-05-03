@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 278877705075147540, guid: f3eedd651b9bc4cc3a4c223527ed91be, type: 3}
-  m_Color: {r: 1, g: 1, b: 0.6839622, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,7 +126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestPrefab: {fileID: 4655391350494813593, guid: c652b2d6aafc34c03a25df2f5b510104, type: 3}
   audioSource: {fileID: 5580254343866991317}
-  chestOffset: {x: 0, y: -1.3, z: 0}
 --- !u!82 &5580254343866991317
 AudioSource:
   m_ObjectHideFlags: 0
@@ -140,13 +139,13 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 07d2458227786444087b186963ba7431, type: 3}
   m_Resource: {fileID: 8300000, guid: 07d2458227786444087b186963ba7431, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.5
   m_Pitch: 1.1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 108
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
