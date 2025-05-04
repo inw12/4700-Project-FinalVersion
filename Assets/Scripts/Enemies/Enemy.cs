@@ -107,8 +107,6 @@ public class Enemy : MonoBehaviour
         HP -= receivedDamage;
         CheckForDeath();
 
-        Debug.Log(HP);
-
         // Apply damage effects if not dead
         if (HP > 0) {
             // damage flash

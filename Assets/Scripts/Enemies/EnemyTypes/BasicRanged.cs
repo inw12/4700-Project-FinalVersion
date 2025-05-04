@@ -20,7 +20,7 @@ public class BasicRanged : MonoBehaviour, IEnemy
     }
 
     private IEnumerator AttackRoutine() {
-        yield return new WaitForSeconds(Random.value);
+        yield return new WaitForSeconds(Random.Range(0f, 0.33f));
         Vector2 targetDirection = Player.Instance.transform.position - transform.position;
         GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         newBullet.transform.right = targetDirection;

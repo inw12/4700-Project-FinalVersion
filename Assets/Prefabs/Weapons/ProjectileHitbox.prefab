@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7390120736167677693}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.154, y: 0, z: -0.13596848}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3075781409875793168, guid: ef1b9874c97c343989a34c056624e334, type: 3}
+  m_Sprite: {fileID: -7676820920027585334, guid: ef1b9874c97c343989a34c056624e334, type: 3}
   m_Color: {r: 0.9009434, g: 0.9009434, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,8 +148,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0026985258, y: -0.0003966391}
-  m_Radius: 0.21998489
+  m_Offset: {x: -0.0010551263, y: -0.00039664406}
+  m_Radius: 0.24452192
 --- !u!50 &4790210223437075458
 Rigidbody2D:
   serializedVersion: 5
@@ -202,6 +202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: {fileID: 11400000, guid: b5c9af86bb46b46649e04a95fd1182d5, type: 2}
-  projectileSpd: 6
+  projectileSpd: 10
   knockbackThrust: 2
   knockbackDuration: 0.1

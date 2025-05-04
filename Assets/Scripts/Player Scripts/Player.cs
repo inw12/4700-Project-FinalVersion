@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     private readonly float dashDuration = 0.12f;
     private readonly float dashCooldown = 0.35f;
 
-
     private void Awake() {
         if (!Instance) {
             Instance = this;

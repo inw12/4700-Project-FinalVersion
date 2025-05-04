@@ -45,8 +45,8 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 111da6aa9f46d4fbe8d075d1f986aa85, type: 3}
   m_Resource: {fileID: 8300000, guid: 111da6aa9f46d4fbe8d075d1f986aa85, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.8
+  m_Volume: 0.75
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
-  moveSpeed: 1.25
+  moveSpeed: 1.4
   deathFX: {fileID: 8892812010945328593, guid: 42d3ee158856a4b0db37d79ef948188a, type: 3}
   deathSFX: {fileID: 6687502943223415786}
   itemPool: []

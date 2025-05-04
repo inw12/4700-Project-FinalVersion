@@ -29,7 +29,7 @@ public class ShotgunRanged : MonoBehaviour, IEnemy
     private IEnumerator AttackRoutine() {
         TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep);
 
-        yield return new WaitForSeconds(Random.value);
+        yield return new WaitForSeconds(Random.Range(0f, 0.66f));
         for (int i = 0; i < burstCount; i++) {
             for (int j = 0; j < bulletsPerBurst; j++) {
             

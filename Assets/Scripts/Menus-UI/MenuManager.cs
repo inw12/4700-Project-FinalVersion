@@ -7,8 +7,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject playerHUD;
-    [SerializeField] private Signal reduceVolumeSignal;
-    [SerializeField] private Signal defaultVolumeSignal;
     [SerializeField] private List<InventoryItem> itemsToReset;
 
     private PlayerControls playerControls;
@@ -34,11 +32,6 @@ public class MenuManager : MonoBehaviour
         gameOverMenu.SetActive(false);
         playerControls.Menus.Pause.started += _ => PauseMenu();        
     }
-
-    private void Update() {
-        if (isPaused) reduceVolumeSignal.Raise();
-        else defaultVolumeSignal.Raise();
-    } 
 
     private void PauseMenu() {
         isPaused = !isPaused;

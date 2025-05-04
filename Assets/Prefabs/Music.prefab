@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 5345555992913029277}
   - component: {fileID: 8453743247571472010}
   - component: {fileID: 3319379431194055966}
-  - component: {fileID: 5295485454113725985}
-  - component: {fileID: 1614578253650077569}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -293,62 +291,6 @@ MonoBehaviour:
       - m_Target: {fileID: 5345555992913029277}
         m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
         m_MethodName: PlayBattleMusic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5295485454113725985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7632751856096102847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e243810e461e4f279ee7756cf839140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  signal: {fileID: 11400000, guid: cbd1b1663de3e4369830d976c10c0227, type: 2}
-  signalEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5345555992913029277}
-        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
-        m_MethodName: DefaultVolume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1614578253650077569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7632751856096102847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e243810e461e4f279ee7756cf839140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  signal: {fileID: 11400000, guid: f480f1d6bf8134813bc5ece532b5476c, type: 2}
-  signalEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5345555992913029277}
-        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
-        m_MethodName: ReducedVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

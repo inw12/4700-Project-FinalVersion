@@ -223,8 +223,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1096685102836082013, guid: 666ab069c67c548c997dcd653eba9dcd, type: 3}
   projectileSpd: 7
   burstCount: 1
-  bulletsPerBurst: 9
-  angleSpread: 80
+  bulletsPerBurst: 7
+  angleSpread: 75
   startingDistance: 0.1
   timeBeweenBursts: 0
   audioSource: {fileID: 6462972484275322343}

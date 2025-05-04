@@ -3071,6 +3071,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 388831161844152773, guid: 0b70f5594207846968ee4e5708249ea1, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 443071395908852826, guid: 0b70f5594207846968ee4e5708249ea1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9841,18 +9845,6 @@ PrefabInstance:
     - target: {fileID: 5939503861138539937, guid: c3f898558ac38438aa62bd4ac7f8712c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6262614487422207677, guid: c3f898558ac38438aa62bd4ac7f8712c, type: 3}
-      propertyPath: HP
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6687502943223415786, guid: c3f898558ac38438aa62bd4ac7f8712c, type: 3}
-      propertyPath: m_Pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6687502943223415786, guid: c3f898558ac38438aa62bd4ac7f8712c, type: 3}
-      propertyPath: m_Volume
-      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 9156348563284203506, guid: c3f898558ac38438aa62bd4ac7f8712c, type: 3}
       propertyPath: target

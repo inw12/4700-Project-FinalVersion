@@ -105,15 +105,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Melee",
-                    "type": "Button",
-                    "id": "72e6dee4-e9b3-4bd5-8949-5224bd3d00a1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -125,17 +116,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ranged",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a2a8bca9-c7ce-4654-b434-c00cfa788007",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -181,15 +161,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Minimap",
-                    "type": "Button",
-                    "id": "ba9c6310-7ae3-4d11-9633-95c5e7927e19",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -201,17 +172,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b5fea4ff-88ad-483d-a91b-7df3227effc6",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Minimap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

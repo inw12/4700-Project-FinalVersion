@@ -198,8 +198,6 @@ MonoBehaviour:
   pauseMenu: {fileID: 1997102704810519777}
   gameOverMenu: {fileID: 6871914952732851715}
   playerHUD: {fileID: 0}
-  reduceVolumeSignal: {fileID: 11400000, guid: f480f1d6bf8134813bc5ece532b5476c, type: 2}
-  defaultVolumeSignal: {fileID: 11400000, guid: cbd1b1663de3e4369830d976c10c0227, type: 2}
   itemsToReset:
   - {fileID: 11400000, guid: 0cbe9e2f848ba49b9aab81c7cfb0ee24, type: 2}
 --- !u!114 &1094511503113281832
@@ -402,7 +400,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1280, y: 960}
+  m_SizeDelta: {x: 1600, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3635392918288344274
 CanvasRenderer:
@@ -1425,7 +1423,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1280, y: 960}
+  m_SizeDelta: {x: 1600, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5240131828353546512
 CanvasRenderer:

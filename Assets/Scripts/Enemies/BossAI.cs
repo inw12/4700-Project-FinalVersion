@@ -110,17 +110,17 @@ public class BossAI : MonoBehaviour
         string animStartupState;
         float rand = Random.value;
 
-        // 50% chance for Basic Shot
-        if (rand <= 0.5f) {
+        // 40% chance for Basic Shot
+        if (rand <= 0.4f) {
             attackTrigger = "startShoot";                       
             animStartupState = "Shoot-Startup";
         } 
-        // 20% chance for Shotgun Burst
-        else if (0.5f < rand && rand <= 0.7f) {
+        // 32.5% chance for Shotgun Burst
+        else if (0.4f < rand && rand <= 0.725f) {
             attackTrigger = "startPunch";                   
             animStartupState = "Punch-Startup";
         } 
-        // 30% chance for AoE Blast
+        // 27.5% chance for AoE Blast
         else {
             attackTrigger = "startDoublePunch";                               
             animStartupState = "DoublePunch";

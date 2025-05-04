@@ -22,15 +22,17 @@ public class Flash : MonoBehaviour
     }
 
     public IEnumerator WhiteFlashRoutine() {
-        // 1. Reset color of sprite
-        spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
-        // 2. Set material
-        spriteRenderer.material = whiteFlash;
-        // 3. Set flash duration
-        yield return new WaitForSeconds(duration);
-        // 4. Restore defaults
-        spriteRenderer.color = defaultColor;
-        spriteRenderer.material = defaultMat;
+        if (spriteRenderer) {
+            // 1. Reset color of sprite
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+            // 2. Set material
+            spriteRenderer.material = whiteFlash;
+            // 3. Set flash duration
+            yield return new WaitForSeconds(duration);
+            // 4. Restore defaults
+            spriteRenderer.color = defaultColor;
+            spriteRenderer.material = defaultMat;
+        }
     }
 
     public IEnumerator RedFlashRoutine() {

@@ -191,15 +191,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Melee"",
-                    ""type"": ""Button"",
-                    ""id"": ""72e6dee4-e9b3-4bd5-8949-5224bd3d00a1"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -211,17 +202,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ranged"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a2a8bca9-c7ce-4654-b434-c00cfa788007"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Melee"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -267,15 +247,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Minimap"",
-                    ""type"": ""Button"",
-                    ""id"": ""ba9c6310-7ae3-4d11-9633-95c5e7927e19"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -287,17 +258,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b5fea4ff-88ad-483d-a91b-7df3227effc6"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Minimap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -313,14 +273,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Combat
         m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
         m_Combat_Ranged = m_Combat.FindAction("Ranged", throwIfNotFound: true);
-        m_Combat_Melee = m_Combat.FindAction("Melee", throwIfNotFound: true);
         // Interaction
         m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
         m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Pause = m_Menus.FindAction("Pause", throwIfNotFound: true);
-        m_Menus_Minimap = m_Menus.FindAction("Minimap", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -512,7 +470,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Combat;
     private List<ICombatActions> m_CombatActionsCallbackInterfaces = new List<ICombatActions>();
     private readonly InputAction m_Combat_Ranged;
-    private readonly InputAction m_Combat_Melee;
     /// <summary>
     /// Provides access to input actions defined in input action map "Combat".
     /// </summary>
@@ -528,10 +485,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Combat/Ranged".
         /// </summary>
         public InputAction @Ranged => m_Wrapper.m_Combat_Ranged;
-        /// <summary>
-        /// Provides access to the underlying input action "Combat/Melee".
-        /// </summary>
-        public InputAction @Melee => m_Wrapper.m_Combat_Melee;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -561,9 +514,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Ranged.started += instance.OnRanged;
             @Ranged.performed += instance.OnRanged;
             @Ranged.canceled += instance.OnRanged;
-            @Melee.started += instance.OnMelee;
-            @Melee.performed += instance.OnMelee;
-            @Melee.canceled += instance.OnMelee;
         }
 
         /// <summary>
@@ -578,9 +528,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Ranged.started -= instance.OnRanged;
             @Ranged.performed -= instance.OnRanged;
             @Ranged.canceled -= instance.OnRanged;
-            @Melee.started -= instance.OnMelee;
-            @Melee.performed -= instance.OnMelee;
-            @Melee.canceled -= instance.OnMelee;
         }
 
         /// <summary>
@@ -715,7 +662,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Menus;
     private List<IMenusActions> m_MenusActionsCallbackInterfaces = new List<IMenusActions>();
     private readonly InputAction m_Menus_Pause;
-    private readonly InputAction m_Menus_Minimap;
     /// <summary>
     /// Provides access to input actions defined in input action map "Menus".
     /// </summary>
@@ -731,10 +677,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Menus/Pause".
         /// </summary>
         public InputAction @Pause => m_Wrapper.m_Menus_Pause;
-        /// <summary>
-        /// Provides access to the underlying input action "Menus/Minimap".
-        /// </summary>
-        public InputAction @Minimap => m_Wrapper.m_Menus_Minimap;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -764,9 +706,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
-            @Minimap.started += instance.OnMinimap;
-            @Minimap.performed += instance.OnMinimap;
-            @Minimap.canceled += instance.OnMinimap;
         }
 
         /// <summary>
@@ -781,9 +720,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
-            @Minimap.started -= instance.OnMinimap;
-            @Minimap.performed -= instance.OnMinimap;
-            @Minimap.canceled -= instance.OnMinimap;
         }
 
         /// <summary>
@@ -853,13 +789,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRanged(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Melee" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMelee(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Interaction" which allows adding and removing callbacks.
@@ -890,12 +819,5 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPause(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Minimap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMinimap(InputAction.CallbackContext context);
     }
 }

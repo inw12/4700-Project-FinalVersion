@@ -3,7 +3,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private FloatValue damage;  
-    [SerializeField] private float projectileSpd = 6f;
+    [SerializeField] private float projectileSpd = 10f;
     [SerializeField] private float knockbackThrust = 2f;
     [SerializeField] private float knockbackDuration = 0.1f;
 
@@ -21,11 +21,17 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<Enemy>())
-        {
+        if (other.GetComponent<Enemy>()) {
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null) {
                 enemy.TakeDamage(damage.value, knockbackThrust, knockbackDuration);
+                Destroy(gameObject);
+            }
+        }
+        else if (other.GetComponent<FinalBoss>()) {
+            FinalBoss boss = other.GetComponent<FinalBoss>();
+            if (boss != null) {
+                boss.TakeDamage(damage.value, 0, 0);
                 Destroy(gameObject);
             }
         }

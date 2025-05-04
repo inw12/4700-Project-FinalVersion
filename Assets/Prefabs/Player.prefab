@@ -789,7 +789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangedWeapon: {fileID: 8536068872543389475}
-  fireRate: 0.375
+  fireRate: 0.4
 --- !u!114 &4868229560463161703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ PrefabInstance:
       objectReference: {fileID: 7249757153736008281}
     - target: {fileID: 9077956990154991457, guid: 0d1c967ad235048e38a905b063d4c01a, type: 3}
       propertyPath: projectileSpd
-      value: 10.33
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
