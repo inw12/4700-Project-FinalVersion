@@ -1,16 +1,21 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyCount;
-    [SerializeField] private GameObject lockedPath;
-    [SerializeField] private GameObject roomClearReward;
+    [SerializeField] private GameObject smallChestSpawn;
+    [SerializeField] private GameObject largeChestSpawn;
     [SerializeField] private Signal backgroundMusicSignal;
     [SerializeField] private Signal battleMusicSignal;
 
+    private GameObject enemyCount;
+    private GameObject lockedPath;
     private bool rewardSpawned = false;
 
-    private void Start() {
+    private void Awake() {
+        enemyCount = gameObject.transform.GetChild(0).gameObject;
+        lockedPath = gameObject.transform.GetChild(1).gameObject;
+
         // De-activate every entity in the room
         foreach (Transform child in transform) {
             child.gameObject.SetActive(false);
@@ -35,14 +40,23 @@ public class RoomController : MonoBehaviour
         // Unlock all doors
         if (lockedPath) Destroy(lockedPath);
 
-        // MUSIC
+        // Music Transition
         if (backgroundMusicSignal) backgroundMusicSignal.Raise();
 
-        // Spawn reward in center of room
-        if (!rewardSpawned) {
-            Vector3 spawnOffset = new(0f, 1.5f, 0f);
-            if (roomClearReward) Instantiate(roomClearReward, transform.position + spawnOffset, Quaternion.identity);
-            rewardSpawned = true;
+        // 50% chance for a chest to spawn
+        if (Random.value < 0.5f) {
+            if (!rewardSpawned) {
+                Vector3 spawnOffset = new(0f, 1.5f, 0f);
+                // 75% chance for a small chest
+                if (Random.value < 0.75f) {
+                    if (smallChestSpawn) Instantiate(smallChestSpawn, transform.position + spawnOffset, Quaternion.identity);
+                }
+                // 25% chance for a large chest
+                else {
+                    if (largeChestSpawn) Instantiate(largeChestSpawn, transform.position + spawnOffset, Quaternion.identity);
+                }
+                rewardSpawned = true;
+            }
         }
     }
 

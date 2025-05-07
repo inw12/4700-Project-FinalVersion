@@ -13,5 +13,5 @@ public class CollectableItem : MonoBehaviour
         if (other.GetComponent<Player>() && !other.isTrigger) {
             (itemType as ICollectableItem).Collect();
         }
-    } 
-}
+    }
+} 

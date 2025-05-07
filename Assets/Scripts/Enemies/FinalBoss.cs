@@ -1,4 +1,4 @@
-// *---*  this script is PURELY responsible for spawning/shooting projectiles in the ANIMATOR  *----------*
+// *---*  this script is MOSTLY responsible for spawning/shooting projectiles in the ANIMATOR  *----------*
 
 using System.Collections;
 using UnityEngine;

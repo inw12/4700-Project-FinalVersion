@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject playerHUD;
     [SerializeField] private List<InventoryItem> itemsToReset;
+    [SerializeField] private List<FloatValue> valuesToReset;
 
     private PlayerControls playerControls;
     private bool isPaused;
@@ -75,9 +76,8 @@ public class MenuManager : MonoBehaviour
 
     public void Retry() {
         Time.timeScale = 1f;
-        foreach (InventoryItem item in itemsToReset) {
-            item.ResetRuntimeAmount();
-        }
+        foreach (InventoryItem item in itemsToReset) item.ResetRuntimeAmount();
+        foreach (FloatValue value in valuesToReset) value.ResetRuntimeValue();
         SceneManager.LoadScene(beginningScene);
     }
 

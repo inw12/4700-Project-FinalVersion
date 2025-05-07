@@ -15,14 +15,14 @@ public class AnimationController : MonoBehaviour
     }
 
     public void PlayAudio() {
-        audioSource.Play();
+        if (audioSource) audioSource.Play();
     }
 
     public void SetInvisible() {
-        spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
+        if (spriteRenderer) spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
     }
 
     public void DestroyObject() {
-        Destroy(gameObject);
+        if (gameObject) Destroy(gameObject);
     }
 }

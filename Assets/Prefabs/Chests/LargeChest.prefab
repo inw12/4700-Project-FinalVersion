@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5032327190168921802}
   - component: {fileID: 7572002771250038886}
   - component: {fileID: 1705888198827623606}
+  - component: {fileID: 1281825556305533228}
   - component: {fileID: 2404039057746770113}
   - component: {fileID: 3686789507146131161}
-  - component: {fileID: 1281825556305533228}
   m_Layer: 0
   m_Name: LargeChest
   m_TagString: Untagged
@@ -205,38 +205,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2.5, y: 2}
   m_EdgeRadius: 0
---- !u!114 &2404039057746770113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4655391350494813593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca45b3459948c4d23949632168e101fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chestType: {fileID: 3686789507146131161}
---- !u!114 &3686789507146131161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4655391350494813593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f41b50eecd7f41d1b1fbfd83a895f84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 0cbe9e2f848ba49b9aab81c7cfb0ee24, type: 2}
-  playerInventory: {fileID: 11400000, guid: b8279570264c94e8f81d5c68c0ddd8f6, type: 2}
-  openChestAudio: {fileID: 1281825556305533228}
-  itemPickupEffect: {fileID: 2124351246792896985, guid: e1da8a7bd697041a4bd3495dba8d0b00, type: 3}
-  destroyEffect: {fileID: 8892812010945328593, guid: 42d3ee158856a4b0db37d79ef948188a, type: 3}
 --- !u!82 &1281825556305533228
 AudioSource:
   m_ObjectHideFlags: 0
@@ -334,3 +304,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2404039057746770113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655391350494813593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca45b3459948c4d23949632168e101fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestType: {fileID: 3686789507146131161}
+--- !u!114 &3686789507146131161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655391350494813593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f41b50eecd7f41d1b1fbfd83a895f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPool:
+  - {fileID: 7046723250540284906, guid: 059c6ad1b11ce452cbad913716b6cd1a, type: 3}
+  - {fileID: 7046723250540284906, guid: 34a02b234f6864eabbf7d5bbe875eb23, type: 3}
+  - {fileID: 7046723250540284906, guid: a35756461917646bfa83d80e13c03bb8, type: 3}
+  rewardEffects:
+  - {fileID: 7343420757877465870, guid: 6cae9a84f52854d9d9884611b8c70468, type: 3}
+  - {fileID: 7343420757877465870, guid: d29076814bc5a4995ba897558b9af5f6, type: 3}
+  - {fileID: 7343420757877465870, guid: 9e5ab71b4254b4b28b8a06d55e4ddb7c, type: 3}
+  destroyEffect: {fileID: 8892812010945328593, guid: 42d3ee158856a4b0db37d79ef948188a, type: 3}

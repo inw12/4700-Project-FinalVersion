@@ -15,8 +15,8 @@ public class BossAI : MonoBehaviour
     private float timeRoaming;
     private bool canAttack;
 
-    private float atkCDMin = 1.5f;
-    private float atkCDMax = 2.5f;
+    private readonly float atkCDMin = 1.5f;
+    private readonly float atkCDMax = 2.5f;
 
 
     private enum State {
@@ -38,16 +38,19 @@ public class BossAI : MonoBehaviour
     }
 
     private void Update() {
-        if (boss.isAlive && boss.canMove) {
-            Vector2 directionToPlayer = (target.position - transform.position).normalized;
-            anim.SetFloat("moveX", directionToPlayer.x);
-            anim.SetFloat("moveY", directionToPlayer.y);
+        if (boss.isAlive) {
+            if (boss.canMove) {
+                Vector2 directionToPlayer = (target.position - transform.position).normalized;
+                anim.SetFloat("moveX", directionToPlayer.x);
+                anim.SetFloat("moveY", directionToPlayer.y);
+                if (anim.GetBool("isMoving")) {
+                    MovementStateControl();
+                }
+            }
 
             if (canAttack) {
                 Attack();
             }
-            if (anim.GetBool("isMoving"))
-                MovementStateControl();
         }
     }
 

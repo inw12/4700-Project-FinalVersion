@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b53f314bc91d44c49f9d2f398cf972a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 6
+  HP: 8
   moveSpeed: 1.35
   deathFX: {fileID: 8892812010945328593, guid: 42d3ee158856a4b0db37d79ef948188a, type: 3}
   deathSFX: {fileID: 4794252563728716090}

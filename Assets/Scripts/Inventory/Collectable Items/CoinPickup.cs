@@ -8,11 +8,11 @@ public class CoinPickup : MonoBehaviour, ICollectableItem
     [SerializeField] private AudioSource audioSource;
 
     private SpriteRenderer spriteRenderer;
-    private CircleCollider2D circleCollider;
+    private BoxCollider2D boxCollider2D;
 
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        circleCollider = GetComponent<CircleCollider2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     public void Collect() {
@@ -27,8 +27,8 @@ public class CoinPickup : MonoBehaviour, ICollectableItem
 
     private IEnumerator CollectRoutine() {
         audioSource.Play();
+        boxCollider2D.enabled = false;
         SetInvisible();
-        circleCollider.enabled = false;
 
         // *--*  Item Effect  *--*
         item.runtimeAmountHeld++;   

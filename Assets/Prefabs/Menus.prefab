@@ -200,6 +200,8 @@ MonoBehaviour:
   playerHUD: {fileID: 0}
   itemsToReset:
   - {fileID: 11400000, guid: 0cbe9e2f848ba49b9aab81c7cfb0ee24, type: 2}
+  valuesToReset:
+  - {fileID: 11400000, guid: c3fba74a56e464e7997e2d3bcb578b63, type: 2}
 --- !u!114 &1094511503113281832
 MonoBehaviour:
   m_ObjectHideFlags: 0

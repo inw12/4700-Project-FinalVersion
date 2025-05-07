@@ -48,9 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b38af2a1adc49d8a362455dfe5693c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedPath: {fileID: 7642228298473901434}
-  roomClearReward: {fileID: 0}
-  enemyCount: {fileID: 5873323467553941991}
+  smallChestSpawn: {fileID: 9207253484037566439, guid: 979e71ac98ef4438ab31ab91b0742f66, type: 3}
+  largeChestSpawn: {fileID: 3075870946618665712, guid: c2b7645d9a2524f1aa07e936db19e215, type: 3}
   backgroundMusicSignal: {fileID: 11400000, guid: 4c7a26d80ebf94513924477e4f2b9324, type: 2}
   battleMusicSignal: {fileID: 11400000, guid: 516fcdb55129644c8890fd2934e350e2, type: 2}
 --- !u!114 &5185049391134891594

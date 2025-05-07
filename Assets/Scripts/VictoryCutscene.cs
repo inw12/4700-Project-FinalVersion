@@ -26,8 +26,8 @@ public class VictoryCutscene : MonoBehaviour
             cutsceneTriggered = true;
 
             // Destroy any active projectiles in the scene
-            Projectile[] projectiles1 = FindObjectsByType<Projectile>(FindObjectsSortMode.None);
-            foreach (Projectile proj in projectiles1) Destroy(proj.gameObject);
+            //Projectile[] projectiles1 = FindObjectsByType<Projectile>(FindObjectsSortMode.None);
+            //foreach (Projectile proj in projectiles1) Destroy(proj.gameObject);
             BossProjectile[] projectiles2 = FindObjectsByType<BossProjectile>(FindObjectsSortMode.None);
             foreach (BossProjectile proj in projectiles2) Destroy(proj.gameObject);
 

@@ -9,14 +9,11 @@ public class Player : MonoBehaviour
     public bool FacingLeft { get { return isFacingLeft; } set { isFacingLeft = value; } }
 
     [SerializeField] private FloatValue HP;
+    [SerializeField] private FloatValue moveSpeed;
+    [SerializeField] private FloatValue dashSpeed;
+    [SerializeField] private BoxCollider2D hurtbox;
     [SerializeField] private Signal damageTakenSignal;
     [SerializeField] private Signal deathSignal;
-    [SerializeField] private BoxCollider2D hurtbox;
-    [SerializeField] private FloatValue moveSpeed;
-
-    [SerializeField] private FloatValue dashSpeed;
-    [SerializeField] private AudioSource dashSFX;
-    [SerializeField] private TrailRenderer trailRenderer;
 
     private PlayerControls playerControls;
     private Camera mainCamera;
@@ -24,6 +21,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D myRigidBody;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRenderer;
+    private TrailRenderer trailRenderer;
+    private AudioSource dashSFX;
     private Knockback knockback;
     private Flash flash;
     private bool isFacingLeft = false;
@@ -38,12 +37,13 @@ public class Player : MonoBehaviour
             Instance = this;
         } else Destroy(gameObject);
 
-        HP.ResetRuntimeValue();
         playerControls = new PlayerControls();
         mainCamera = Camera.main;
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
+        dashSFX = GetComponent<AudioSource>();
         knockback = GetComponent<Knockback>();
         flash = GetComponent<Flash>();
         inputCallback = ctx => Dash(); 
