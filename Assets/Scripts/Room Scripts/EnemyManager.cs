@@ -6,7 +6,15 @@ public class EnemyManager : MonoBehaviour
 
     private bool signalRaise = false;
 
-    void Update() {
+    // If the room initially has NO enemies
+    private void Awake() {
+        if (transform.childCount == 0 && !signalRaise) {
+            signalRaise = true;
+        }
+    }
+
+    // Effect when the room is cleared of enemies
+    private void Update() {
         if (transform.childCount == 0 && !signalRaise) {
             roomClearSignal.Raise();
             signalRaise = true;

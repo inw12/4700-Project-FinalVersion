@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     public static Enemy Instance { get; private set; }
 
-    public float HP = 5;
+    [SerializeField] private float HP = 5;
     [SerializeField] private float moveSpeed = 1.5f;
     [SerializeField] private GameObject deathFX;
     [SerializeField] private AudioSource deathSFX;

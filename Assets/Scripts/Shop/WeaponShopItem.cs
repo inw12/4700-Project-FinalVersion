@@ -1,12 +1,12 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 public class WeaponShopItem : MonoBehaviour, IShopItem
 {
     [SerializeField] private GameObject weaponPrefab;
     [SerializeField] private InventoryItem coinInventoryItem;
-    [SerializeField] private TextMeshProUGUI countCointText;
+    [SerializeField] private Signal successSignal;
+    [SerializeField] private Signal failedSignal;
     [SerializeField] private GameObject destroyEffect;
 
     private AudioSource[] sfx;
@@ -27,7 +27,7 @@ public class WeaponShopItem : MonoBehaviour, IShopItem
         // Effect when not enough coins
         if (coinInventoryItem.runtimeAmountHeld < itemCost) {
             errorSound.Play();
-            StartCoroutine(TextFlashRoutine(Color.red));
+            failedSignal.Raise();
             return;
         }
         // Purchase effect
@@ -38,10 +38,10 @@ public class WeaponShopItem : MonoBehaviour, IShopItem
             // *--*  Reduce player's coin count  *--*
             coinInventoryItem.runtimeAmountHeld -= itemCost;
             if (coinInventoryItem.runtimeAmountHeld < 0) {
-                coinInventoryItem.ResetRuntimeAmount();
+                coinInventoryItem.Reset();
             }
 
-            StartCoroutine(TextFlashRoutine(Color.green));
+            successSignal.Raise();
 
             // *--*  Purchase Effect  *--*
             Weapon.Instance.SwapCurrentWeapon(weaponPrefab);
@@ -58,14 +58,7 @@ public class WeaponShopItem : MonoBehaviour, IShopItem
         Vector3 offset = new(0f, 0.6f, 0f);
         GameObject poof = Instantiate(destroyEffect, transform.position + offset, Quaternion.identity);
         poof.transform.localScale = destroyEffect.transform.localScale * 1.3f; 
-
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
-    }
-
-    private IEnumerator TextFlashRoutine(Color color) {
-        countCointText.color = color;
-        yield return new WaitForSeconds(0.1f);
-        countCointText.color = defaultTextColor;
     }
 }

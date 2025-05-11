@@ -28,6 +28,8 @@ public class SceneTransition : MonoBehaviour
             yield return StartCoroutine(WaitForTargetAnimation(fadePanel.GetComponent<Animator>(), "toBlack"));
         }
 
+        
+
         // Load next scene
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(sceneToLoad);
         while (!asyncOp.isDone) yield return null;

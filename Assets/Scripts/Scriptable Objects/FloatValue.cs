@@ -2,21 +2,21 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu]   
-public class FloatValue : ScriptableObject, ISerializationCallbackReceiver
+public class FloatValue : ScriptableObject, ISerializationCallbackReceiver, IResettable
 {
     public float value;
     [NonSerialized] public float runtimeValue;
 
     private void OnEnable() {
-        ResetRuntimeValue();
+        Reset();
     }
 
-    public void ResetRuntimeValue() {
+    public void Reset() {
         runtimeValue = value;
     }
 
     public void OnAfterDeserialize() {
-        ResetRuntimeValue();
+        Reset();
     } 
 
     public void OnBeforeSerialize() {}

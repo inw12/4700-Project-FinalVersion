@@ -1,15 +1,29 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform target;
     [SerializeField] private Vector3Value initialPosition;
     [SerializeField] private MinMaxVectorValue camBounds;
     [SerializeField] private float smoothing;
-    
-    private void Start() {
+
+    private Transform target;
+
+    private void OnEnable() {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void Awake() {
         if (initialPosition) transform.position = initialPosition.runtimeValue;
         if (camBounds) camBounds.ResetRuntimeValues();
+    }
+
+    private void Start() {
+        if (target) target = Player.Instance.transform;    
     }
 
     private void LateUpdate() {
@@ -29,11 +43,13 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
-    public Vector2 GetMaxBounds() {
-        return camBounds.runtimeMax;
+    // *** NEW ***
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        Player player = FindFirstObjectByType<Player>();
+        target = player.transform;
     }
 
-    public Vector2 GetMinBounds() {
-        return camBounds.runtimeMin;
+    public void ChangeTarget(Transform newTarget) {
+        target = newTarget;
     }
 }

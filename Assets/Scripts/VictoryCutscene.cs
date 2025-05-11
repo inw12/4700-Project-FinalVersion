@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class VictoryCutscene : MonoBehaviour
 {
-    [SerializeField] private FinalBoss boss;
+    [SerializeField] private Boss boss;
     [SerializeField] private GameObject explosionVFX;
     [SerializeField] private GameObject fadeToBlack;
     [SerializeField] private GameObject playerHUD;
@@ -32,7 +32,7 @@ public class VictoryCutscene : MonoBehaviour
             foreach (BossProjectile proj in projectiles2) Destroy(proj.gameObject);
 
             // Focus the camera on the boss
-            mainCamera.GetComponent<CameraMovement>().target = boss.transform;
+            mainCamera.GetComponent<CameraMovement>().ChangeTarget(boss.transform);
 
             boss.StopMoving();
             Player.Instance.gameObject.SetActive(false);
@@ -52,6 +52,8 @@ public class VictoryCutscene : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(4f);
         yield return StartCoroutine(FadeToBlack());
+        Player.Instance.gameObject.SetActive(true);
+        Time.timeScale = 0;
         playerHUD.SetActive(false);
         victoryMenu.SetActive(true);
         // desitryo th ethingy 

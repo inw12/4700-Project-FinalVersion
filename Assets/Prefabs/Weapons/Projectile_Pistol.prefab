@@ -201,8 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3833a9ca40d794e9c93f44a539622181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  projectileSpd: 10
   knockbackThrust: 2
   knockbackDuration: 0.1
-  accuracy: 90
+  accuracy: 85

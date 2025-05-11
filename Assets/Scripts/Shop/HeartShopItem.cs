@@ -1,26 +1,33 @@
 // *---*  Upon purchase, player's HP will be restored  *-----*
 
-using System.Collections;
-using TMPro;
 using UnityEngine;
 
 public class HeartShopItem : MonoBehaviour, IShopItem
 {
     [SerializeField] private FloatValue playerHealth;
     [SerializeField] private InventoryItem coinInventoryItem;
-    [SerializeField] private TextMeshProUGUI countCointText;
-    [SerializeField] private AudioSource purchaseSound;
-    [SerializeField] private AudioSource errorSound;
+    [SerializeField] private Signal successSignal;
+    [SerializeField] private Signal failedSignal;
+
+    private AudioSource[] sfx;
+    private AudioSource purchaseSound;
+    private AudioSource errorSound;
 
     private readonly Color defaultTextColor = Color.white;
     private readonly float restoreAmount = 1f;
     private readonly int itemCost = 2;  // price of purchasing a heart
 
+    private void Awake() {
+        sfx = GetComponents<AudioSource>();
+        purchaseSound = sfx[0];
+        errorSound = sfx[1];
+    }
+
     public void Purchase() {
         // IF not enough coins...
         if (coinInventoryItem.runtimeAmountHeld < itemCost) {
             errorSound.Play();
-            StartCoroutine(TextFlashRoutine(Color.red));
+            failedSignal.Raise();
             return;
         }
         // Otherwise...
@@ -30,10 +37,10 @@ public class HeartShopItem : MonoBehaviour, IShopItem
             // *--*  Reduce player's coin count  *--*
             coinInventoryItem.runtimeAmountHeld -= itemCost;
             if (coinInventoryItem.runtimeAmountHeld < 0) {
-                coinInventoryItem.ResetRuntimeAmount();
+                coinInventoryItem.Reset();
             }
 
-            StartCoroutine(TextFlashRoutine(Color.green));
+            successSignal.Raise();
 
             // *--*  Purchase Effect  *--*
             playerHealth.runtimeValue += restoreAmount; 
@@ -41,11 +48,5 @@ public class HeartShopItem : MonoBehaviour, IShopItem
                 playerHealth.runtimeValue = 10f;
             }
         }
-    }
-
-    private IEnumerator TextFlashRoutine(Color color) {
-        countCointText.color = color;
-        yield return new WaitForSeconds(0.1f);
-        countCointText.color = defaultTextColor;
     }
 }

@@ -333,7 +333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 7046723250540284906, guid: 0d1c967ad235048e38a905b063d4c01a, type: 3}
   coinInventoryItem: {fileID: 11400000, guid: 0cbe9e2f848ba49b9aab81c7cfb0ee24, type: 2}
-  countCointText: {fileID: 0}
+  successSignal: {fileID: 11400000, guid: 53b169a5c74c648dabff68f267a9daaa, type: 2}
+  failedSignal: {fileID: 11400000, guid: c051cfa17b0344ee8b1f322131699966, type: 2}
   destroyEffect: {fileID: 8892812010945328593, guid: 42d3ee158856a4b0db37d79ef948188a, type: 3}
 --- !u!1 &6064104567173806616
 GameObject:

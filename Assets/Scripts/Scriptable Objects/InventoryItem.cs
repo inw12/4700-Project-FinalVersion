@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item")]
-public class InventoryItem : ScriptableObject
+public class InventoryItem : ScriptableObject, IResettable
 {
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemIcon;
@@ -12,10 +12,10 @@ public class InventoryItem : ScriptableObject
     private readonly int defaultAmountHeld = 0;
 
     private void OnEnable() {
-        ResetRuntimeAmount();
+        Reset();
     }
 
-    public void ResetRuntimeAmount() {
+    public void Reset() {
         runtimeAmountHeld = defaultAmountHeld;
     }
 }

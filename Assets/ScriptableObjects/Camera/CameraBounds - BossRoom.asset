@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a906a8188fccc4764bbe0c1abef8c112, type: 3}
   m_Name: CameraBounds - BossRoom
   m_EditorClassIdentifier: 
-  defaultMax: {x: 13.3, y: 8}
-  defaultMin: {x: 2.65, y: 2}
+  defaultMax: {x: 13, y: 8}
+  defaultMin: {x: 3, y: 2}

@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e5ed370ab5c42808205a9b7e1cea82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   initialPosition: {fileID: 11400000, guid: cff48ae012ef440a69205c6303f27b06, type: 2}
   camBounds: {fileID: 11400000, guid: 0281ceecf9ffe4ee8b3611216ce449d2, type: 2}
   smoothing: 0.2
+  target: {fileID: 0}

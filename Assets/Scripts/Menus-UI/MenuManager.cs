@@ -7,8 +7,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject playerHUD;
-    [SerializeField] private List<InventoryItem> itemsToReset;
-    [SerializeField] private List<FloatValue> valuesToReset;
+    [SerializeField] private List<ScriptableObject> itemsToReset;
+    [SerializeField] private PlayerWeapon playerWeapon;
 
     private PlayerControls playerControls;
     private bool isPaused;
@@ -76,13 +76,23 @@ public class MenuManager : MonoBehaviour
 
     public void Retry() {
         Time.timeScale = 1f;
-        foreach (InventoryItem item in itemsToReset) item.ResetRuntimeAmount();
-        foreach (FloatValue value in valuesToReset) value.ResetRuntimeValue();
+        ResetEverything();
         SceneManager.LoadScene(beginningScene);
     }
 
     public void QuitToMain() {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(menuScene);
+        ResetEverything();
+        GameManager.Instance.RestartGame(menuScene);
     }
+
+    private void ResetEverything() {
+        Player.Instance.gameObject.SetActive(true);
+        // Reset scriptable objects
+        foreach (ScriptableObject item in itemsToReset) {
+            (item as IResettable)?.Reset();
+        }
+        // Update player weapon to basic pistol
+        Weapon.Instance.UpdateCurrentWeapon();
+    } 
 }

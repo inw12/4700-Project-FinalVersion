@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class Weapon : Singleton<Weapon>
 {
-    [SerializeField] private GameObject defaultWeapon;
+    [SerializeField] private PlayerWeapon playerWeapon;
     [SerializeField] private Signal weaponSwapSignal;
 
+    private GameObject weaponInstance;      // Reference to the spawned weapon from 'playerWeapon'
+    private MonoBehaviour currentWeapon;    // Reference to the Monobehavior in 'weaponInstance'
+
     private PlayerControls playerControls;
-    private MonoBehaviour currentWeapon;    // script of the current weapon
-    private GameObject weaponInstance;      // object of the current weapon
     private AudioSource audioSrc;
     private bool attackButtonDown = false;
 
@@ -19,10 +20,8 @@ public class Weapon : Singleton<Weapon>
         playerControls = new PlayerControls();
         audioSrc = GetComponent<AudioSource>();
 
-        // Instantiate the default weapon
-        weaponInstance = Instantiate(defaultWeapon, transform.position + weaponOffset, transform.rotation, transform);  
+        weaponInstance = Instantiate(playerWeapon.currentWeapon, transform.position + weaponOffset, transform.rotation, transform);  
         currentWeapon = weaponInstance.GetComponent<MonoBehaviour>();
-        // IMPORTANT!!! DON'T CALL METHODS ON INSTANTIATED OBJECTS; THEY ARE NOT THE OBJECT, THEY ARE INSTANCES OF THEM!!!
     }
 
     private void OnEnable() {
@@ -52,6 +51,20 @@ public class Weapon : Singleton<Weapon>
         if (currentWeapon) attackButtonDown = false;
     }
 
+    // Used for updating weapon instances when weapons are forcibly changed by the system (i.e. restarts)
+    public void UpdateCurrentWeapon() {
+        if (currentWeapon) {
+            Destroy(Instance.currentWeapon.gameObject);
+            currentWeapon = null;
+
+            weaponInstance.transform.GetPositionAndRotation(out Vector3 position, out Quaternion rotation);
+            weaponInstance = Instantiate(playerWeapon.currentWeapon, position, rotation, transform);
+            currentWeapon = weaponInstance.GetComponent<MonoBehaviour>();
+            StartCoroutine(SignalDelay());
+        }
+    }
+
+    // Drops current weapon on the ground + Swaps player's weapon for a new one
     public void SwapCurrentWeapon (GameObject newWeapon) {
         if (currentWeapon) {
             // Drop current weapon on the floor
@@ -60,7 +73,8 @@ public class Weapon : Singleton<Weapon>
             currentWeapon = null;
 
             // Equip new weapon + Update 'currentWeapon' instance
-            weaponInstance.transform.GetPositionAndRotation(out Vector3 position, out Quaternion rotation); // get position of weapon
+            weaponInstance.transform.GetPositionAndRotation(out Vector3 position, out Quaternion rotation); // get position + rotation of weapon
+            playerWeapon.currentWeapon = newWeapon;
             weaponInstance = Instantiate(newWeapon, position, rotation, transform);                         // instantiate new weapon @ that position
             audioSrc.Play();
             currentWeapon = weaponInstance.GetComponent<MonoBehaviour>();                                   // update 'currentWeapon'
@@ -68,7 +82,7 @@ public class Weapon : Singleton<Weapon>
         }        
     }
 
-    // Wait for objects to update before signaling to the UI
+    // Raise signal to UI to update the HUD; delayed for weapon instance to load
     private IEnumerator SignalDelay() {
         yield return new WaitForSeconds(0.1f);
         weaponSwapSignal.Raise();

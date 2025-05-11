@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd1365a88302477fb94edf08b0a7ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWeapon: {fileID: 0}
 --- !u!114 &8617782376387177263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,10 +668,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 960}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -724,7 +723,7 @@ RectTransform:
   m_GameObject: {fileID: 2883584176906042042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8719249247492801435}
@@ -732,7 +731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -714, y: -404}
+  m_AnchoredPosition: {x: -576.16, y: -318.7188}
   m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3143237951984408480
@@ -1160,6 +1159,8 @@ GameObject:
   - component: {fileID: 5598748521243135761}
   - component: {fileID: 2574573183026150825}
   - component: {fileID: 5207866008401296318}
+  - component: {fileID: 7820989433401930473}
+  - component: {fileID: 1356350190511755438}
   m_Layer: 5
   m_Name: Coin Count
   m_TagString: Untagged
@@ -1176,7 +1177,7 @@ RectTransform:
   m_GameObject: {fileID: 5021635032676815301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2751830194227998689}
@@ -1186,7 +1187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 663.1094, y: -550.6094}
+  m_AnchoredPosition: {x: 535.8, y: -439.7}
   m_SizeDelta: {x: 273.7811, y: 98.7812}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5598748521243135761
@@ -1240,7 +1241,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 11400000, guid: 0cbe9e2f848ba49b9aab81c7cfb0ee24, type: 2}
-  itemAmountText: {fileID: 1001770299931170164}
+--- !u!114 &7820989433401930473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5021635032676815301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e243810e461e4f279ee7756cf839140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: 53b169a5c74c648dabff68f267a9daaa, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5207866008401296318}
+        m_TargetAssemblyTypeName: CoinCount, Assembly-CSharp
+        m_MethodName: GreenTextFlash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1356350190511755438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5021635032676815301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e243810e461e4f279ee7756cf839140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: c051cfa17b0344ee8b1f322131699966, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5207866008401296318}
+        m_TargetAssemblyTypeName: CoinCount, Assembly-CSharp
+        m_MethodName: RedTextFlash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5735900959674180668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1475,7 @@ RectTransform:
   m_GameObject: {fileID: 6073842756344876200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3599300515044566379}
@@ -1427,8 +1483,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 236, y: 68}
-  m_SizeDelta: {x: 472, y: 100}
+  m_AnchoredPosition: {x: 202.14072, y: 56}
+  m_SizeDelta: {x: 485.3333, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7169506777419449830
 CanvasRenderer:

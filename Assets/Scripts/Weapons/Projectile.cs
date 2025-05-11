@@ -35,6 +35,13 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else if (other.GetComponent<Boss>()) {
+            Boss boss = other.GetComponent<Boss>();
+            if (boss != null) {
+                boss.TakeDamage(damage, knockbackThrust, knockbackDuration);
+                Destroy(gameObject);
+            }
+        }
         // destroy on contact w/ terrain
         else if (!other.isTrigger && !other.GetComponent<Player>()) {
             Destroy(gameObject);

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Flash : MonoBehaviour
 {
-    [SerializeField] private Material whiteFlash;   // indicates damage taken
-    [SerializeField] private Material redFlash;     // indicates death
+    [SerializeField] private Material damageFlash;   // indicates damage taken
+    [SerializeField] private Material deathFlash;     // indicates death
     [SerializeField] private float duration = .1f;  // duration of the flash
 
     private SpriteRenderer spriteRenderer;
@@ -26,7 +26,7 @@ public class Flash : MonoBehaviour
             // 1. Reset color of sprite
             spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
             // 2. Set material
-            spriteRenderer.material = whiteFlash;
+            spriteRenderer.material = damageFlash;
             // 3. Set flash duration
             yield return new WaitForSeconds(duration);
             // 4. Restore defaults
@@ -39,7 +39,7 @@ public class Flash : MonoBehaviour
         // 1. Reset color of sprite
         spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         // 2. Set material
-        spriteRenderer.material = redFlash;
+        spriteRenderer.material = deathFlash;
         // 3. Set flash duration
         yield return new WaitForSeconds(duration);
         // 4. Restore defaults

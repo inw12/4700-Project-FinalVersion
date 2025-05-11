@@ -54,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -175,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecedb442d9b7448ac80ff3ece6046a61
-      internalID: -1628251543
+      spriteID: c599155d4c6c5495d9a484f65b9502bf
+      internalID: 1662467044
       vertices: []
       indices: 
       edges: []
@@ -197,8 +197,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f44f59fc3c79f4df9908f173aa99a3cf
-      internalID: -1637740241
+      spriteID: d6cba9a238109458c8b4395372b77b78
+      internalID: -280976879
       vertices: []
       indices: 
       edges: []
@@ -207,7 +207,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fd79e9d9f92174d61b96d8a41ce43dff
+    spriteID: 90dcd9a3adef04b028827b82d79ee258
     internalID: 0
     vertices: []
     indices: 
@@ -219,8 +219,8 @@ TextureImporter:
     nameFileIdTable:
       sparkle_effect_0: 3158152690369184071
       sparkle_effect_1: 8611692762699541278
-      sparkle_effect_2: -1628251543
-      sparkle_effect_3: -1637740241
+      sparkle_effect_2: 1662467044
+      sparkle_effect_3: -280976879
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

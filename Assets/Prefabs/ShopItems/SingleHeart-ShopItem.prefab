@@ -139,9 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 11400000, guid: c3fba74a56e464e7997e2d3bcb578b63, type: 2}
   coinInventoryItem: {fileID: 11400000, guid: 0cbe9e2f848ba49b9aab81c7cfb0ee24, type: 2}
-  countCointText: {fileID: 0}
-  purchaseSound: {fileID: 1714713213602298}
-  errorSound: {fileID: 7699677457558683527}
+  successSignal: {fileID: 11400000, guid: 53b169a5c74c648dabff68f267a9daaa, type: 2}
+  failedSignal: {fileID: 11400000, guid: c051cfa17b0344ee8b1f322131699966, type: 2}
 --- !u!82 &1714713213602298
 AudioSource:
   m_ObjectHideFlags: 0

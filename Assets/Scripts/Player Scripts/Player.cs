@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Player))]
 [RequireComponent(typeof(PlayerControls))]
@@ -35,7 +36,10 @@ public class Player : MonoBehaviour
     private void Awake() {
         if (!Instance) {
             Instance = this;
-        } else Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(GetGameObject());
+        }
 
         playerControls = new PlayerControls();
         mainCamera = Camera.main;
@@ -49,14 +53,21 @@ public class Player : MonoBehaviour
         inputCallback = ctx => Dash(); 
     }
 
+    private GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
     private void OnEnable() {
         playerControls.Enable();
         playerControls.Movement.Dash.performed += inputCallback; 
+        SceneManager.sceneLoaded += OnSceneLoaded;  // *** NEW ***
     }
 
     private void OnDisable() {
-        playerControls.Disable();
+        playerControls?.Disable();
         playerControls.Movement.Dash.performed -= inputCallback; 
+        SceneManager.sceneLoaded -= OnSceneLoaded;  // *** NEW ***
     }
 
     private void Start() {
@@ -128,8 +139,9 @@ public class Player : MonoBehaviour
 
     private void CheckForDeath() {
         if (HP.runtimeValue <= 0) {
+            StartCoroutine(flash.RedFlashRoutine());
             if (deathSignal) deathSignal.Raise();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 
@@ -149,5 +161,15 @@ public class Player : MonoBehaviour
         trailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
+    }
+
+    // *** NEW ***
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        GameObject player = GameObject.FindWithTag("Player");
+        GameObject spawnPoint = GameObject.FindWithTag("Respawn");
+
+        if (player && spawnPoint) {
+            player.transform.position = spawnPoint.transform.position;
+        }
     }
 }
