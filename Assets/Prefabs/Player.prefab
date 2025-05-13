@@ -367,13 +367,13 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: df34bb53561a74254823c221af2d7071, type: 3}
   m_Resource: {fileID: 8300000, guid: df34bb53561a74254823c221af2d7071, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
-  m_Pitch: 0.85
+  m_Volume: 0.25
+  m_Pitch: 0.825
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 196
+  Priority: 200
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -469,6 +469,7 @@ MonoBehaviour:
   hurtbox: {fileID: 7016614481747333654}
   damageTakenSignal: {fileID: 11400000, guid: 62ec05f4310bc41a69e3409268e6f008, type: 2}
   deathSignal: {fileID: 11400000, guid: fd51a265ba7bd4e62874cf8035c6808f, type: 2}
+  pauseSignal: {fileID: 11400000, guid: 44eb4432a6baa4afe83604b007424642, type: 2}
 --- !u!114 &6138182219794875700
 MonoBehaviour:
   m_ObjectHideFlags: 0

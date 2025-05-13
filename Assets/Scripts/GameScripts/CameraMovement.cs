@@ -40,6 +40,8 @@ public class CameraMovement : MonoBehaviour
                 // Move the camera 
                 transform.position = Vector3.Lerp(transform.position, targetPosition, smoothing);   // Lerp(where we are, where we wanna be, movement interval between those 2 points)
             }
+        } else {
+            Debug.Log("Player instance not found!");
         }
     }
 

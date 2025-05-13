@@ -6,12 +6,11 @@ public class VictoryCutscene : MonoBehaviour
     [SerializeField] private Boss boss;
     [SerializeField] private GameObject explosionVFX;
     [SerializeField] private GameObject fadeToBlack;
-    [SerializeField] private GameObject playerHUD;
-    [SerializeField] private GameObject victoryMenu;
     
     private Camera mainCamera;
     private Animator anim;
     private bool cutsceneTriggered;
+    private bool isPlaying = true;
 
     private void Awake() {
         mainCamera = Camera.main;
@@ -21,20 +20,19 @@ public class VictoryCutscene : MonoBehaviour
 
     // * Triggered by a SIGNAL from the editor
     public void TriggerVictoryCutscene() {
-
         if (!cutsceneTriggered) {
             cutsceneTriggered = true;
 
             // Destroy any active projectiles in the scene
-            //Projectile[] projectiles1 = FindObjectsByType<Projectile>(FindObjectsSortMode.None);
-            //foreach (Projectile proj in projectiles1) Destroy(proj.gameObject);
+            Projectile[] projectiles1 = FindObjectsByType<Projectile>(FindObjectsSortMode.None);
+            foreach (Projectile proj in projectiles1) Destroy(proj.gameObject);
             BossProjectile[] projectiles2 = FindObjectsByType<BossProjectile>(FindObjectsSortMode.None);
             foreach (BossProjectile proj in projectiles2) Destroy(proj.gameObject);
 
             // Focus the camera on the boss
             mainCamera.GetComponent<CameraMovement>().ChangeTarget(boss.transform);
-
             boss.StopMoving();
+
             Player.Instance.gameObject.SetActive(false);
 
             // Trigger boss death animation
@@ -52,15 +50,15 @@ public class VictoryCutscene : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(4f);
         yield return StartCoroutine(FadeToBlack());
+        isPlaying = false;
         Player.Instance.gameObject.SetActive(true);
         Time.timeScale = 0;
-        playerHUD.SetActive(false);
-        victoryMenu.SetActive(true);
-        // desitryo th ethingy 
+        MenuManager.Instance.ToggleHUD();
+        MenuManager.Instance.EnableVictoryMenu();
     }
 
     private IEnumerator SpawnExplosions() {
-        while (!victoryMenu.activeInHierarchy) {
+        while (isPlaying) {
             float offsetX = Random.Range(-1.5f, 1.5f);
             float offsetY = Random.Range(-1.25f, 1.5f);
             Vector3 spawnPos = new(boss.transform.position.x + offsetX, boss.transform.position.y + offsetY, boss.transform.position.z);
@@ -78,8 +76,7 @@ public class VictoryCutscene : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForTargetAnimation(Animator anim, string stateName)
-    {
+    private IEnumerator WaitForTargetAnimation(Animator anim, string stateName) {
         while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) yield return null;  // wait for target animation to finish
     }
 }

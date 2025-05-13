@@ -1,12 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Player))]
-[RequireComponent(typeof(PlayerControls))]
-public class Player : MonoBehaviour
+public class Player : Singleton<Player>
 {
-    public static Player Instance { get; private set; }
     public bool FacingLeft { get { return isFacingLeft; } set { isFacingLeft = value; } }
 
     [SerializeField] private FloatValue HP;
@@ -15,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private BoxCollider2D hurtbox;
     [SerializeField] private Signal damageTakenSignal;
     [SerializeField] private Signal deathSignal;
+    [SerializeField] private Signal pauseSignal;
 
     private PlayerControls playerControls;
     private Camera mainCamera;
@@ -33,13 +32,10 @@ public class Player : MonoBehaviour
     private readonly float dashDuration = 0.12f;
     private readonly float dashCooldown = 0.35f;
 
-    private void Awake() {
-        if (!Instance) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(GetGameObject());
-        }
+
+    // *-----  INITIALIZATION + RUNTIME  -----*
+    protected override void Awake() {
+        base.Awake();
 
         playerControls = new PlayerControls();
         mainCamera = Camera.main;
@@ -52,32 +48,25 @@ public class Player : MonoBehaviour
         flash = GetComponent<Flash>();
         inputCallback = ctx => Dash(); 
     }
-
-    private GameObject GetGameObject()
-    {
-        return gameObject;
-    }
-
     private void OnEnable() {
         playerControls.Enable();
-        playerControls.Movement.Dash.performed += inputCallback; 
-        SceneManager.sceneLoaded += OnSceneLoaded;  // *** NEW ***
-    }
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
+        // Input callback subscriptions
+        playerControls.Movement.Dash.performed += inputCallback; 
+        playerControls.Menus.Pause.started += OnPausePressed;
+    }
     private void OnDisable() {
         playerControls?.Disable();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        // Unsubscribe from input callbacks
         playerControls.Movement.Dash.performed -= inputCallback; 
-        SceneManager.sceneLoaded -= OnSceneLoaded;  // *** NEW ***
+        playerControls.Menus.Pause.started -= OnPausePressed;
     }
-
-    private void Start() {
-        playerControls.Movement.Dash.performed += _ => Dash();
-    }
-
     private void Update() {
         PlayerInput();
     }
-
     private void FixedUpdate() {
         // Dis-allow movement if player is getting knocked back
         if (knockback.GettingKnockedBack) return;    
@@ -88,8 +77,8 @@ public class Player : MonoBehaviour
         }            
     }
 
-    private void PlayerInput()
-    {
+    // *---  PLAYER MOVEMENT  ---*
+    private void PlayerInput() {
         movement = playerControls.Movement.Move.ReadValue<Vector2>();
         if (movement != Vector2.zero)
         {
@@ -101,50 +90,14 @@ public class Player : MonoBehaviour
             myAnimator.SetBool("isMoving", false);
         } 
     }
-
     private void Move() {
         myRigidBody.MovePosition(myRigidBody.position + movement * (moveSpeed.runtimeValue * Time.fixedDeltaTime));
     }
-
     private void Dash() {
         if (!isDashing) {
             StartCoroutine(DashRoutine());
         }
     }
-
-    private void AdjustPlayerFacingDirection()
-    {
-        if (!mainCamera) return;
-
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 playerScreenPoint = mainCamera.WorldToScreenPoint(transform.position);
-
-        if (mousePos.x < playerScreenPoint.x) {
-            mySpriteRenderer.flipX = true;
-            FacingLeft = true;
-        } else {
-            mySpriteRenderer.flipX = false;
-            FacingLeft = false;
-        }
-    }
-
-    public void TakeDamage(float damageReceived, float knockbackThrust, float knockbackDuration)
-    {
-        HP.runtimeValue -= damageReceived;
-        if (damageTakenSignal) damageTakenSignal.Raise();
-        if (Enemy.Instance) knockback.TriggerKnockback(Enemy.Instance.transform, knockbackThrust, knockbackDuration);
-        StartCoroutine(flash.WhiteFlashRoutine());
-        CheckForDeath();
-    }
-
-    private void CheckForDeath() {
-        if (HP.runtimeValue <= 0) {
-            StartCoroutine(flash.RedFlashRoutine());
-            if (deathSignal) deathSignal.Raise();
-            //gameObject.SetActive(false);
-        }
-    }
-
     private IEnumerator DashRoutine()
     {
         // Initiate Dash
@@ -163,7 +116,38 @@ public class Player : MonoBehaviour
         isDashing = false;
     }
 
-    // *** NEW ***
+
+    // *---  HP MANAGEMENT  ---*
+    public void TakeDamage(float damageReceived, float knockbackThrust, float knockbackDuration) {
+        HP.runtimeValue -= damageReceived;
+        if (damageTakenSignal) damageTakenSignal.Raise();
+        if (Enemy.Instance) knockback.TriggerKnockback(Enemy.Instance.transform, knockbackThrust, knockbackDuration);
+        StartCoroutine(flash.WhiteFlashRoutine());
+        CheckForDeath();
+    }
+    private void CheckForDeath() {
+        if (HP.runtimeValue <= 0) {
+            StartCoroutine(flash.RedFlashRoutine());
+            if (deathSignal) deathSignal.Raise();
+        }
+    }
+
+
+    // *---  MISC.  ---*
+    private void AdjustPlayerFacingDirection() {
+        if (!mainCamera) return;
+
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 playerScreenPoint = mainCamera.WorldToScreenPoint(transform.position);
+
+        if (mousePos.x < playerScreenPoint.x) {
+            mySpriteRenderer.flipX = true;
+            FacingLeft = true;
+        } else {
+            mySpriteRenderer.flipX = false;
+            FacingLeft = false;
+        }
+    }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         GameObject player = GameObject.FindWithTag("Player");
         GameObject spawnPoint = GameObject.FindWithTag("Respawn");
@@ -171,5 +155,17 @@ public class Player : MonoBehaviour
         if (player && spawnPoint) {
             player.transform.position = spawnPoint.transform.position;
         }
+    }
+    private void OnPausePressed(InputAction.CallbackContext context) {
+        pauseSignal.Raise();
+    }
+
+
+    // *---  PUBLIC METHODS  ---*
+    public void EnableControls() {
+        playerControls?.Enable();
+    }
+    public void DisableControls() {
+        playerControls?.Disable();
     }
 }

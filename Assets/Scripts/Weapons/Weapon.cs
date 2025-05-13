@@ -87,4 +87,11 @@ public class Weapon : Singleton<Weapon>
         yield return new WaitForSeconds(0.1f);
         weaponSwapSignal.Raise();
     }
+
+    public void EnableWeapons() {
+        playerControls.Enable();
+    }
+    public void DisableWeapons() {
+        playerControls.Disable();
+    }
 }

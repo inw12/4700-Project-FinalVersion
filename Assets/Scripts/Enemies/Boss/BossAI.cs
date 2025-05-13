@@ -5,12 +5,13 @@ public class BossAI : MonoBehaviour
 {
     [SerializeField] private float roamChangeDirFloat = 0.75f;
     [SerializeField] private float personalBubble = 6.5f;       // boss will chase target if they're outside the bubble
+    [SerializeField] private CutsceneManager cutscene;
 
     // % chance of which attack will occur
-    private readonly float singleShotChance = 0.30f; 
-    private readonly float shotgunShotChance = 0.20f;   
-    private readonly float singleBlastChance = 0.30f;   
-    // private readonly float multiBlastChance = 0.20f;   
+    private readonly float singleShotChance = 0.25f; 
+    private readonly float shotgunShotChance = 0.25f;   
+    private readonly float singleBlastChance = 0.25f;   
+    // private readonly float multiBlastChance = 0.25f;   
 
     private Boss boss;
     private State state;
@@ -42,16 +43,18 @@ public class BossAI : MonoBehaviour
         roamPosition = GetRoamingPosition();
     }
     private void Update() {
-        if (boss.isAlive) {
-            Vector2 directionToPlayer = (target.position - transform.position).normalized;
-            anim.SetFloat("moveX", directionToPlayer.x);
-            anim.SetFloat("moveY", directionToPlayer.y);
-            if (canAttack) {
-                boss.StopMoving();
-                Attack();
-            }
-            if (!anim.GetBool("isAttacking")) {
-                MovementStateControl();
+        if (!cutscene.IsPlaying()) {
+            if (boss.isAlive) {
+                Vector2 directionToPlayer = (target.position - transform.position).normalized;
+                anim.SetFloat("moveX", directionToPlayer.x);
+                anim.SetFloat("moveY", directionToPlayer.y);
+                if (canAttack) {
+                    boss.StopMoving();
+                    Attack();
+                }
+                if (!anim.GetBool("isAttacking")) {
+                    MovementStateControl();
+                }
             }
         }
     }
