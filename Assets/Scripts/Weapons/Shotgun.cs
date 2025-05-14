@@ -41,7 +41,7 @@ public class Shotgun : MonoBehaviour, IWeapon
     }
     // items that drop have their colliders disabled until the player walks away from it
     private IEnumerator ColliderCooldownRoutine(BoxCollider2D collider, Vector3 itemPosition) {
-        while (Vector3.Distance(Player.Instance.transform.position, itemPosition) < 1) yield return null;
+        while (Vector3.Distance(Player.Instance.transform.position, itemPosition) < 1.25f) yield return null;
         collider.enabled = true;
     }
 

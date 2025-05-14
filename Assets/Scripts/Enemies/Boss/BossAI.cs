@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
-    [SerializeField] private float roamChangeDirFloat = 0.75f;
-    [SerializeField] private float personalBubble = 6.5f;       // boss will chase target if they're outside the bubble
+    [SerializeField] private float roamChangeDirFloat = 1f;
+    [SerializeField] private float personalBubble = 7f;       // boss will chase target if they're outside the bubble
     [SerializeField] private CutsceneManager cutscene;
 
     // % chance of which attack will occur
-    private readonly float singleShotChance = 0.25f; 
-    private readonly float shotgunShotChance = 0.25f;   
-    private readonly float singleBlastChance = 0.25f;   
-    // private readonly float multiBlastChance = 0.25f;   
+    private readonly float singleShotChance = 0.20625f;     // 20.625% chance for full auto
+    private readonly float shotgunShotChance = 0.23125f;    // 23.125% chance for shotgun 
+    private readonly float singleBlastChance = 0.20625f;    // 20.625% chance for single AoE blast
+    private readonly float multiBlastChance = 0.23125f;     // 23.125% chance for multi AoE blast 
+    // private readonly float spawnEnemies = 0.125f;        // 12.5% chance to spawn more enemies
 
     private Boss boss;
     private State state;
@@ -58,7 +59,6 @@ public class BossAI : MonoBehaviour
             }
         }
     }
-
 
     // *--- STATE CONTROL ---*
     private void MovementStateControl() {
@@ -117,11 +117,13 @@ public class BossAI : MonoBehaviour
     private IEnumerator AttackRoutine() {
         anim.SetBool("isAttacking", true);    
 
-        // Variables for randomizing which animation state to enter
+        // Probability variables
         float chance1 = singleShotChance;
         float chance2 = singleShotChance + shotgunShotChance;
         float chance3 = chance2 + singleBlastChance;
-        float rand = Random.Range(1, 11) / 10f;
+        float chance4 = chance3 + multiBlastChance;
+        float rand = Random.value;
+        // Animation state variables
         string attackTrigger;
         string startState;
         string endState;
@@ -133,22 +135,28 @@ public class BossAI : MonoBehaviour
             endState = "EndSingleShot";
         }
         // * Shotgun Shot
-        else if (chance1 < rand && rand < chance2) {
+        else if (chance1 <= rand && rand < chance2) {
             attackTrigger = "startShotgunShot";
             startState = "StartShotgunShot";
             endState = "EndShotgunShot";
         }
         // * Single AoE Blast
-        else if (chance2 < rand && rand < chance3) {
+        else if (chance2 <= rand && rand < chance3) {
             attackTrigger = "startSingleBlast";
             startState = "StartSingleBlast";
             endState = "EndSingleBlast";
         }
         // * Multi AoE Blast
-        else {
+        else if (chance3 <= rand && rand < chance4) {
             attackTrigger = "startMultiBlast";
             startState = "StartMultiBlast";
             endState = "EndMultiBlast";
+        }
+        // * Spawn Enemies
+        else {
+            attackTrigger = "startSpawningEnemies";
+            startState = "StartSpawn";
+            endState = "EndSpawn";
         }
 
         // Startup Animation
@@ -158,7 +166,7 @@ public class BossAI : MonoBehaviour
         // Looping Animation
         anim.SetBool("isLooping", true);
         // Loop for a duration for certain attacks
-        if (attackTrigger != "startSingleBlast") {
+        if (attackTrigger != "startSingleBlast" && attackTrigger != "startSpawningEnemies") {
             float minLoopTime = 3f, maxLoopTime = 5.5f;
             yield return new WaitForSeconds(Random.Range(minLoopTime, maxLoopTime));
         }
@@ -170,7 +178,11 @@ public class BossAI : MonoBehaviour
         //boss.MoveTo(roamPosition);
 
         // Apply attack cooldown
-        yield return new WaitForSeconds(Random.Range(atkCDMin, atkCDMax));
+        if (attackTrigger != "startSpawningEnemies") {
+            yield return new WaitForSeconds(Random.Range(atkCDMin, atkCDMax));
+        } else {
+            yield return new WaitForSeconds(6f);
+        }
         canAttack = true;
     }
     private IEnumerator WaitForCurrentAnimation(Animator anim, string stateName)

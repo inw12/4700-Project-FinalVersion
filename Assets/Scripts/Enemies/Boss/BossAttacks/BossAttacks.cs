@@ -66,6 +66,7 @@ public class BossAttacks : MonoBehaviour
     public void SingleBurst() {
         (singleBlastAttack as IBossAttack).Attack(Boss.Instance.transform);
     }
+    // Multi AoE Burst
     public void MultiBurst() {
         (multiBlastAttack as IBossAttack).Attack(Boss.Instance.transform);
     }
@@ -76,8 +77,7 @@ public class BossAttacks : MonoBehaviour
     }
 
     // returns the "general direction" of where the player is
-    private string GetDominantDirection(Vector2 dir)    
-    {
+    private string GetDominantDirection(Vector2 dir)     {
         if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y)) {
             return dir.x > 0 ? "Right" : "Left";
         }

@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 1679943865145020804}
   - component: {fileID: 9156348563284203506}
   - component: {fileID: 130482651547177730}
+  - component: {fileID: 5419319510409341979}
   - component: {fileID: 7940678810497592088}
   - component: {fileID: 1619915353349217980}
   - component: {fileID: 5598239399790310020}
@@ -538,8 +539,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 1
-  HP: 175
-  moveSpeed: 1.6
+  HP: 200
+  moveSpeed: 1.65
   bossDeathSignal: {fileID: 11400000, guid: 3183a9b9852884204bada5fde0590905, type: 2}
 --- !u!114 &9156348563284203506
 MonoBehaviour:
@@ -581,6 +582,28 @@ MonoBehaviour:
     spawnTransform: {fileID: 5810347651971068218}
   - spawnName: Right
     spawnTransform: {fileID: 5500156008700222905}
+--- !u!114 &5419319510409341979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5553313164398946186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38315d67106ed4d018e8bb0a90d6c83e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnEnemyPrefab: {fileID: 7949825207615872561, guid: bca009cf8a2f74a268095fdcde7c7e98, type: 3}
+  enemySpawnPoints:
+  - spawnName: TopLeft
+    spawnTransform: {fileID: 0}
+  - spawnName: TopRight
+    spawnTransform: {fileID: 0}
+  - spawnName: BottomLeft
+    spawnTransform: {fileID: 0}
+  - spawnName: BottomRight
+    spawnTransform: {fileID: 0}
 --- !u!114 &7940678810497592088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1096685102836082013, guid: 06fe656f4bef34a7b937e47d5f400467, type: 3}
-  projectileSpd: 10.25
+  projectileSpd: 10
   audioSrc: {fileID: 2261578456946321298}
 --- !u!114 &5598239399790310020
 MonoBehaviour:

@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioSource deathSFX;
 
     [SerializeField] private List<GameObject> itemPool;     // list of items that may potentially drop on death
-    private readonly float dropChance = 0.33f;   // 25% item drop chance
+    private readonly float dropChance = 0.33f;   // 33% item drop chance
 
     private Rigidbody2D rigidBody;
     private Collider2D hurtbox;

@@ -72,7 +72,7 @@ public class Player : Singleton<Player>
         if (knockback.GettingKnockedBack) return;    
         // Otherwise, trigger movement
         else {
-            AdjustPlayerFacingDirection();
+            //AdjustPlayerFacingDirection();
             Move();
         }            
     }

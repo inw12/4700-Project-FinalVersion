@@ -26,12 +26,18 @@ public class MainMenu : MonoBehaviour
     public void StartGame() {
         if (Player.Instance) Player.Instance.gameObject.SetActive(true);
         if (fadeToBlack) fadePanel = Instantiate(fadeToBlack, Vector3.zero, Quaternion.identity);
-        StartCoroutine(SceneTransitionRoutine(fadePanel.GetComponent<Animator>(), "toBlack"));
+        StartCoroutine(SceneTransitionRoutine(sceneToStart, fadePanel.GetComponent<Animator>(), "toBlack"));
     }
 
     public void QuitToDesktop() {
         Application.Quit();
     }    
+
+    public void ToTestingArea() {
+        if (Player.Instance) Player.Instance.gameObject.SetActive(true);
+        if (fadeToBlack) fadePanel = Instantiate(fadeToBlack, Vector3.zero, Quaternion.identity);
+        StartCoroutine(SceneTransitionRoutine("TestingArea", fadePanel.GetComponent<Animator>(), "toBlack"));
+    }
 
     private IEnumerator SceneEnterRoutine() {
         while(!Player.Instance) yield return null;      // wait for player to instantiate (if haven't already)
@@ -40,10 +46,10 @@ public class MainMenu : MonoBehaviour
     }
     
     // fades to black before running the next scene
-    private IEnumerator SceneTransitionRoutine(Animator anim, string stateName)
+    private IEnumerator SceneTransitionRoutine(string scene, Animator anim, string stateName)
     {
         while (!anim.GetCurrentAnimatorStateInfo(0).IsName(stateName))  yield return null;  // wait for previous animation to finish
         while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) yield return null;  // wait for target animation to finish
-        SceneManager.LoadScene(sceneToStart);
+        SceneManager.LoadScene(scene);
     }
 }

@@ -35,15 +35,18 @@ public class Pistol : MonoBehaviour, IWeapon
 
     // drops currently equipped weapon on the ground
     public void Drop() {
+        // drop weapon a little underneath the player
         Vector3 offset = new(0f, -0.3f, 0f);
         GameObject droppedItem = Instantiate(pickupableCounterpart, Player.Instance.transform.position + offset, Quaternion.identity);
+        // turn off collider for dropped weapon
         BoxCollider2D boxCollider = droppedItem.GetComponent<BoxCollider2D>();
         boxCollider.enabled = false;
+        // restrict dropped weapon from being picked up again until player walks away from it
         droppedItem.GetComponent<MonoBehaviour>().StartCoroutine(ColliderCooldownRoutine(boxCollider, droppedItem.transform.position));
     }
     // items that drop have their colliders disabled until the player walks away from it
     private IEnumerator ColliderCooldownRoutine(BoxCollider2D collider, Vector3 itemPosition) {
-        while (Vector3.Distance(Player.Instance.transform.position, itemPosition) < 1) yield return null;
+        while (Vector3.Distance(Player.Instance.transform.position, itemPosition) < 1.25f) yield return null;
         collider.enabled = true;
     }
 

@@ -85,7 +85,7 @@ public class MenuManager : Singleton<MenuManager>
     private void ResetMenus() {
         UnpauseGame();
         GameManager.Instance.ResetGameObjects();
-        if (playerHUD) playerHUD.SetActive(true);
+        if (playerHUD) Destroy(playerHUD);
         pauseMenu.SetActive(false);
         victoryMenu.SetActive(false);
         gameOverMenu.SetActive(false);

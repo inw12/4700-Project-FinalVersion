@@ -484,7 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: {fileID: 6813274730156535610}
   roamChangeDirFloat: 0.75
-  outerBubble: 12
+  outerBubble: 30
   innerBubble: 10
   stopMovingWhileAttacking: 1
   attackCooldown: 0.75
