@@ -30,15 +30,18 @@ public class MenuManager : Singleton<MenuManager>
     }
 
     // *-----  MENUS  ---------------*
-    public void EnablePauseMenu() {
-        PauseGame();
-        playerHUD.SetActive(false);
-        pauseMenu.SetActive(true);
-    }
-    public void DisablePauseMenu() {
-        UnpauseGame();
-        playerHUD.SetActive(true);
-        pauseMenu.SetActive(false);
+    public void TogglePauseMenu() {
+        if (!isPaused) {
+            PauseGame();
+            MusicManager.Instance.ReduceVolume();
+            playerHUD.SetActive(false);
+            pauseMenu.SetActive(true);
+        } else {
+            UnpauseGame();
+            MusicManager.Instance.ResetVolume();
+            playerHUD.SetActive(true);
+            pauseMenu.SetActive(false);
+        }
     }
     public void EnableVictoryMenu() {
         PauseGame();

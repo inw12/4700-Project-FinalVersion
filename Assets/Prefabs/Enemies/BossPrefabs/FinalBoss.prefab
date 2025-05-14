@@ -555,6 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 1
   personalBubble: 8
+  cutscene: {fileID: 0}
 --- !u!114 &130482651547177730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1096685102836082013, guid: 3807b70d0c96d4952b429420da8b3d81, type: 3}
-  projectileSpd: 13
+  projectileSpd: 14.25
   audioSrc: {fileID: 2623977456980043453}
 --- !u!114 &3476097587635232586
 MonoBehaviour:

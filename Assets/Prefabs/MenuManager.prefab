@@ -219,7 +219,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1058437994911532866}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: EnablePauseMenu
+        m_MethodName: TogglePauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1346,7 +1346,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1058437994911532866}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: DisablePauseMenu
+        m_MethodName: TogglePauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

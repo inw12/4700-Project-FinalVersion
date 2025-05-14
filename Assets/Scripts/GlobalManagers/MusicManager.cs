@@ -17,6 +17,7 @@ public class MusicManager : Singleton<MusicManager>
     }
 
 
+    // *-----  PUBLIC METHODS  -----*
     public void LoadSongs(AudioClip newsongA, AudioClip newsongB) {
         songA.clip = newsongA;
         songB.clip = newsongB;
@@ -37,6 +38,23 @@ public class MusicManager : Singleton<MusicManager>
         StartCoroutine(FadeOut(songA, fadeDuration));
         StartCoroutine(FadeIn(songB, fadeDuration));        
     }
+    public void ReduceVolume() {
+        songA.volume = defaultVolume / 2;
+        songB.volume = defaultVolume / 2;
+    }
+    public void ResetVolume() {
+        songA.volume = defaultVolume;
+        songB.volume = defaultVolume;
+    }
+    public void ResetAudio() {
+        if (songA.isPlaying) {
+            songA.Stop();
+        } else {
+            songB.Stop();
+        }
+        songA.clip = null;
+        songB.clip = null;
+    }
 
 
     // Fade out current song
@@ -46,7 +64,7 @@ public class MusicManager : Singleton<MusicManager>
             source.volume -= startVolume * Time.deltaTime / fadeDuration;
             yield return null;
         }
-        source.Pause();
+        source.Stop();
     }
     // Fade in next song
     private IEnumerator FadeIn(AudioSource source, float fadeDuration) {
@@ -57,15 +75,5 @@ public class MusicManager : Singleton<MusicManager>
             yield return null;
         }
         source.volume = defaultVolume;
-    }
-
-    public void ResetAudio() {
-        if (songA.isPlaying) {
-            songA.Stop();
-        } else {
-            songB.Stop();
-        }
-        songA.clip = null;
-        songB.clip = null;
     }
 }

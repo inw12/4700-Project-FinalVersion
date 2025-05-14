@@ -4,7 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private readonly string startingScene = "TestingArea";
+    [SerializeField] private string sceneToStart = "Level1";
+    [SerializeField] private GameObject fadeToBlack;
+
+    private GameObject fadePanel;
 
     private void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -16,11 +19,14 @@ public class MainMenu : MonoBehaviour
     // Upon entering this scene...
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         StartCoroutine(SceneEnterRoutine());
+
+        if (fadePanel) Destroy(fadePanel);  // *** NEW ***
     }
     
     public void StartGame() {
         if (Player.Instance) Player.Instance.gameObject.SetActive(true);
-        SceneManager.LoadScene(startingScene);
+        if (fadeToBlack) fadePanel = Instantiate(fadeToBlack, Vector3.zero, Quaternion.identity);
+        StartCoroutine(SceneTransitionRoutine(fadePanel.GetComponent<Animator>(), "toBlack"));
     }
 
     public void QuitToDesktop() {
@@ -28,8 +34,16 @@ public class MainMenu : MonoBehaviour
     }    
 
     private IEnumerator SceneEnterRoutine() {
-        while(!Player.Instance) yield return null;
-        yield return new WaitForSeconds(0.1f);
-        Player.Instance.gameObject.SetActive(false);
+        while(!Player.Instance) yield return null;      // wait for player to instantiate (if haven't already)
+        yield return new WaitForSeconds(0.1f);          // wait a little extra for other things to load
+        Player.Instance.gameObject.SetActive(false);    // turn off player so they cannot do stuff in the main menu
+    }
+    
+    // fades to black before running the next scene
+    private IEnumerator SceneTransitionRoutine(Animator anim, string stateName)
+    {
+        while (!anim.GetCurrentAnimatorStateInfo(0).IsName(stateName))  yield return null;  // wait for previous animation to finish
+        while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) yield return null;  // wait for target animation to finish
+        SceneManager.LoadScene(sceneToStart);
     }
 }

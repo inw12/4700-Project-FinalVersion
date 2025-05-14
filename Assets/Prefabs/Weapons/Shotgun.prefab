@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0.75
   projectileSpd: 11
-  fireRate: 0.7
+  fireRate: 0.65
   angleSpread: 45
   bulletsPerBurst: 5
   projectilePrefab: {fileID: 7390120736167677693, guid: 0e3405b16b7c34e7581b1695c90eeff1, type: 3}

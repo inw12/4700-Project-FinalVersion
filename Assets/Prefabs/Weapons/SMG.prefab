@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  projectileSpd: 12.5
-  fireRate: 0.2
+  projectileSpd: 13
+  fireRate: 0.224
   projectilePrefab: {fileID: 7390120736167677693, guid: f9a467bdca5ab46149ec0367d7991cdc, type: 3}
   projectileSpawnPoint: {fileID: 5790200083466011679}
   pickupableCounterpart: {fileID: 809896901094368939, guid: ca7df80416d8246428f250e27fdcae87, type: 3}

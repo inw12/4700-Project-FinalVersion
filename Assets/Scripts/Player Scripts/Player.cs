@@ -166,6 +166,8 @@ public class Player : Singleton<Player>
         playerControls?.Enable();
     }
     public void DisableControls() {
-        playerControls?.Disable();
+        playerControls?.Movement.Disable();
+        playerControls?.Combat.Disable();
+        playerControls?.Interaction.Disable();
     }
 }
