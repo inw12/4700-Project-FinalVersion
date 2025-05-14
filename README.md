@@ -1,8 +1,8 @@
 # CS 4750 Final Project
-### Title: MOVE!
-### Author: Ian Wong
+**Title: MOVE!**
+**Author: Ian Wong**
 
-## Description:
+# Description:
 A top-down 2D action RPG.
 
 # Installation
@@ -16,7 +16,7 @@ A top-down 2D action RPG.
 - **Space**: Dodge
 - **Esc**: Pause/Unpause
 
-## Debugging
+# Debugging
 - If the game ever freezes up while playing, terminate the program by pressing:
   - ALT+F4 (Windows)
   - CMD+OPTION+ESC (Mac)
