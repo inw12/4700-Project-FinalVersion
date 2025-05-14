@@ -1,6 +1,6 @@
 # CS 4750 Final Project
-# Title: MOVE!
-# Author: Ian Wong
+### Title: MOVE!
+### Author: Ian Wong
 
 ## Description:
 A top-down 2D action RPG.
